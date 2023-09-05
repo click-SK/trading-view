@@ -28,7 +28,12 @@ const CandlestickChart = () => {
     };
 
     try {
-      const response = await axios.get(`https://www.okex.com${requestPath}`, { headers });
+      // const response = await axios.get(`https://www.okex.com${requestPath}`, { headers });
+      const response = await fetch(`https://www.okex.com${requestPath}`, {
+        method:'GET',
+        headers:headers
+      }
+      )
       const newDataPoints = response.data.map(item => {
         return {
           x: new Date(item[0]), // Дата і час
@@ -46,11 +51,11 @@ const CandlestickChart = () => {
     }
   };
 
-  useEffect(() => {
-    fetchData();
-    const interval = setInterval(fetchData, 60000); // оновлення кожної хвилини
-    return () => clearInterval(interval);
-  }, []);
+  // useEffect(() => {
+  //   fetchData();
+  //   const interval = setInterval(fetchData, 60000); // оновлення кожної хвилини
+  //   return () => clearInterval(interval);
+  // }, []);
 
   const options = {
     theme: "light2",
@@ -74,10 +79,13 @@ const CandlestickChart = () => {
     }]
   };
 
+  console.log(options);
+
   return (
     <div>
       <h1>BTC/USDT Rate (1 Minute)</h1>
       <CanvasJSChart options={options} />
+      <button onClick={fetchData} >new</button>
     </div>
   );
 };

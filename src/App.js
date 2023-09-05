@@ -3,6 +3,7 @@ import './App.css';
 import CryptoChart from './components/CryptoChart';
 import StockChart from './components/StockChart';
 import CandlestickChart from './components/CandlestickChart';
+import CandlestickChartFake from './components/CandlestickChartFake';
 
 function App() {
 
@@ -22,6 +23,8 @@ function App() {
        <div className="App">
             {/* <CryptoChart data={sampleData} /> */}
             {/* <StockChart/> */}
+            <CandlestickChart/>
+            <CandlestickChartFake/>
         </div>
     </div>
   );
